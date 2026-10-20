@@ -1,0 +1,139 @@
+.home-wrapper {
+  font-family: 'Inter', sans-serif;
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+
+.hero {
+  padding: 60px 0;
+  background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 100%);
+}
+
+.hero__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.hero__content {
+  flex: 1;
+}
+
+.label {
+  display: inline-block;
+  color: #1a56db;
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.hero__heading {
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #111827;
+  margin-bottom: 16px;
+}
+
+.hero__desc {
+  font-size: 1.1rem;
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.hero__action {
+  display: flex;
+  gap: 16px;
+}
+
+
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background-color: #1a56db;
+  color: #ffffff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #1e429f;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: #1a56db;
+  border: 1px solid #1a56db;
+}
+
+.btn-outline:hover {
+  background-color: #ebf5ff;
+}
+
+/* Hình ảnh Banner */
+.hero__media {
+  flex: 1;
+  text-align: right;
+}
+
+.hero__image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+
+.features {
+  padding: 70px 0;
+  background-color: #ffffff;
+}
+
+.features__title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 40px;
+}
+
+.features__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.feature-card {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  padding: 30px;
+  border-radius: 12px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.feature-card__title {
+  font-size: 1.25rem;
+  color: #1a56db;
+  margin-bottom: 12px;
+}
+
+.feature-card__desc {
+  color: #4b5563;
+  line-height: 1.5;
+}
