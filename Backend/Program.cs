@@ -32,11 +32,11 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// 5. Tự động kiểm tra và khởi tạo Database + nạp dữ liệu mẫu ban đầu
+// 5. Tự động chạy Migration để cập nhật Database và nạp dữ liệu
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.EnsureCreated();
+    db.Database.Migrate();
 }
 
 // 6. Cấu hình HTTP request pipeline
