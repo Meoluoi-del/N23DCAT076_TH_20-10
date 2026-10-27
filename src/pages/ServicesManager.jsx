@@ -18,7 +18,6 @@ export default function ServicesManager() {
   // 1. GET: Lấy danh sách dịch vụ từ API khi vào trang
   const fetchServices = async () => {
     try {
-      setLoading(true);
       setError(null);
       const data = await getServices();
       setServices(data);

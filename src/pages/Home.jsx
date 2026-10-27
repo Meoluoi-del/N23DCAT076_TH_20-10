@@ -17,7 +17,7 @@ export default function Home() {
           setServices(data);
         }
       })
-      .catch((err) => {
+      .catch(() => {
         // Nếu chưa bật Back-end thì vẫn dùng dữ liệu mặc định để giao diện không bị lỗi
         console.log("Back-end chưa kết nối, sử dụng dữ liệu tĩnh.");
       });
