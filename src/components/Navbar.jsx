@@ -25,7 +25,7 @@ export default function Navbar() {
             to="/services" 
             className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
           >
-            Dịch vụ (API CRUD)
+            Dịch vụ
           </NavLink>
 
           <NavLink 

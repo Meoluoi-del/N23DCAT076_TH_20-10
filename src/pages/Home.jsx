@@ -36,7 +36,7 @@ export default function Home() {
               </p>
               <div className="hero__action">
                 <a href="#services" className="btn">Khám phá</a>
-                <a href="/services" className="btn btn-outline">Quản lý dịch vụ (API)</a>
+                <a href="/services" className="btn btn-outline">Xem dịch vụ</a>
               </div>
             </div>
 
