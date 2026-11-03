@@ -12,6 +12,9 @@ export default function Login() {
     password: '',
   });
 
+  // State quản lý xem hoặc ẩn mật khẩu
+  const [showPassword, setShowPassword] = useState(false);
+
   const [errors, setErrors] = useState({});
   const [serverError, setServerError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -105,19 +108,54 @@ export default function Login() {
           {errors.email && <span style={{ color: '#dc3545', fontSize: '12px', marginTop: '3px', display: 'block' }}>{errors.email}</span>}
         </div>
 
-        {/* Password */}
+        {/* Password có chức năng xem/ẩn */}
         <div style={{ marginBottom: '20px' }}>
           <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '4px' }}>
             Mật khẩu
           </label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="Nhập mật khẩu"
-            style={{ width: '100%', padding: '9px 12px', border: `1px solid ${errors.password ? '#dc3545' : '#ccc'}`, borderRadius: '4px', fontSize: '14px', boxSizing: 'border-box' }}
-          />
+          <div style={{ position: 'relative' }}>
+            <input
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Nhập mật khẩu"
+              style={{ width: '100%', padding: '9px 40px 9px 12px', border: `1px solid ${errors.password ? '#dc3545' : '#ccc'}`, borderRadius: '4px', fontSize: '14px', boxSizing: 'border-box' }}
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              title={showPassword ? 'Ẩn mật khẩu' : 'Xem mật khẩu'}
+              style={{
+                position: 'absolute',
+                right: '10px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                color: '#6c757d',
+                padding: '4px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              {showPassword ? (
+                // Icon Ẩn
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                  <line x1="1" y1="1" x2="23" y2="23"></line>
+                </svg>
+              ) : (
+                // Icon Hiện
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              )}
+            </button>
+          </div>
           {errors.password && <span style={{ color: '#dc3545', fontSize: '12px', marginTop: '3px', display: 'block' }}>{errors.password}</span>}
         </div>
 
