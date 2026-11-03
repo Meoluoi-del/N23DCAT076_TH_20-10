@@ -9,7 +9,7 @@ namespace BackendAPI.Models
         public string Email { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Mật khẩu không được để trống")]
-        [MinLength(6, ErrorMessage = "Mật khẩu phải có ít nhất 6 ký tự")]
+        [MinLength(12, ErrorMessage = "Mật khẩu phải có ít nhất 12 ký tự")]
         public string Password { get; set; } = string.Empty;
 
         public string FullName { get; set; } = string.Empty;

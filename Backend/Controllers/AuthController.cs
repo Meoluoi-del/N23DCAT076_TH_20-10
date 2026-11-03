@@ -28,6 +28,24 @@ namespace BackendAPI.Controllers
 
             var cleanEmail = dto.Email.Trim().ToLower();
 
+            // Kiểm tra quy tắc mật khẩu: ít nhất 12 ký tự, 1 chữ in hoa, 1 số, 1 ký tự đặc biệt
+            if (dto.Password.Length < 12)
+            {
+                return BadRequest(new { message = "Mật khẩu phải có ít nhất 12 ký tự!" });
+            }
+            if (!dto.Password.Any(char.IsUpper))
+            {
+                return BadRequest(new { message = "Mật khẩu phải chứa ít nhất một chữ in hoa (A-Z)!" });
+            }
+            if (!dto.Password.Any(char.IsDigit))
+            {
+                return BadRequest(new { message = "Mật khẩu phải chứa ít nhất một chữ số (0-9)!" });
+            }
+            if (!dto.Password.Any(ch => !char.IsLetterOrDigit(ch)))
+            {
+                return BadRequest(new { message = "Mật khẩu phải chứa ít nhất một ký tự đặc biệt (!, @, #, $, %, ...)!" });
+            }
+
             // Kiểm tra email đã tồn tại trong DB chưa
             var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Email.ToLower() == cleanEmail);
             if (existingUser != null)

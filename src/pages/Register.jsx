@@ -17,7 +17,14 @@ export default function Register() {
   const [successMsg, setSuccessMsg] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // Validate dữ liệu người dùng nhập
+  // Kiểm tra 4 điều kiện của mật khẩu theo thời gian thực
+  const password = formData.password;
+  const isLengthValid = password.length >= 12;
+  const hasUpperCase = /[A-Z]/.test(password);
+  const hasNumber = /[0-9]/.test(password);
+  const hasSpecialChar = /[^a-zA-Z0-9]/.test(password);
+
+  // Validate toàn bộ dữ liệu trước khi submit
   const validateForm = () => {
     const newErrors = {};
 
@@ -34,11 +41,17 @@ export default function Register() {
       newErrors.email = 'Email không đúng định dạng (VD: example@gmail.com).';
     }
 
-    // Validate Password
+    // Validate Password theo 4 quy tắc bắt buộc
     if (!formData.password) {
       newErrors.password = 'Vui lòng nhập mật khẩu.';
-    } else if (formData.password.length < 6) {
-      newErrors.password = 'Mật khẩu phải chứa ít nhất 6 ký tự.';
+    } else if (!isLengthValid) {
+      newErrors.password = 'Mật khẩu phải có ít nhất 12 ký tự.';
+    } else if (!hasUpperCase) {
+      newErrors.password = 'Mật khẩu phải chứa ít nhất 1 chữ in hoa (A-Z).';
+    } else if (!hasNumber) {
+      newErrors.password = 'Mật khẩu phải chứa ít nhất 1 chữ số (0-9).';
+    } else if (!hasSpecialChar) {
+      newErrors.password = 'Mật khẩu phải chứa ít nhất 1 ký tự đặc biệt (!, @, #, $, %, ...).';
     }
 
     // Validate Confirm Password
@@ -89,7 +102,7 @@ export default function Register() {
   };
 
   return (
-    <div style={{ maxWidth: '450px', margin: '50px auto', padding: '30px', border: '1px solid #ddd', borderRadius: '6px', background: '#fff', fontFamily: 'Arial, sans-serif' }}>
+    <div style={{ maxWidth: '460px', margin: '40px auto', padding: '30px', border: '1px solid #ddd', borderRadius: '6px', background: '#fff', fontFamily: 'Arial, sans-serif' }}>
       <h2 style={{ textAlign: 'center', margin: '0 0 10px 0', fontSize: '22px', fontWeight: 'bold' }}>
         Đăng ký tài khoản
       </h2>
@@ -147,7 +160,7 @@ export default function Register() {
         {/* Mật khẩu */}
         <div style={{ marginBottom: '14px' }}>
           <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '4px' }}>
-            Mật khẩu (tối thiểu 6 ký tự)
+            Mật khẩu
           </label>
           <input
             type="password"
@@ -158,6 +171,23 @@ export default function Register() {
             style={{ width: '100%', padding: '9px 12px', border: `1px solid ${errors.password ? '#dc3545' : '#ccc'}`, borderRadius: '4px', fontSize: '14px', boxSizing: 'border-box' }}
           />
           {errors.password && <span style={{ color: '#dc3545', fontSize: '12px', marginTop: '3px', display: 'block' }}>{errors.password}</span>}
+
+          {/* Bảng hướng dẫn & kiểm tra 4 quy tắc mật khẩu */}
+          <div style={{ marginTop: '8px', padding: '10px 12px', background: '#f8f9fa', border: '1px solid #e9ecef', borderRadius: '4px', fontSize: '12px' }}>
+            <div style={{ fontWeight: '600', marginBottom: '6px', color: '#495057' }}>Yêu cầu mật khẩu:</div>
+            <div style={{ color: isLengthValid ? '#198754' : '#6c757d', marginBottom: '3px' }}>
+              {isLengthValid ? '✓' : '•'} Có ít nhất 12 ký tự ({password.length}/12)
+            </div>
+            <div style={{ color: hasUpperCase ? '#198754' : '#6c757d', marginBottom: '3px' }}>
+              {hasUpperCase ? '✓' : '•'} Có ít nhất một chữ in hoa (A-Z)
+            </div>
+            <div style={{ color: hasNumber ? '#198754' : '#6c757d', marginBottom: '3px' }}>
+              {hasNumber ? '✓' : '•'} Có ít nhất một chữ số (0-9)
+            </div>
+            <div style={{ color: hasSpecialChar ? '#198754' : '#6c757d' }}>
+              {hasSpecialChar ? '✓' : '•'} Có ít nhất một ký tự đặc biệt (!, @, #, $, %, ...)
+            </div>
+          </div>
         </div>
 
         {/* Xác nhận mật khẩu */}
