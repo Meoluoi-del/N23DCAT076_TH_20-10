@@ -40,4 +40,16 @@ export const deleteService = async (id) => {
   return response.data;
 };
 
+// 6. AUTH: Đăng ký tài khoản người dùng
+export const registerUser = async (userData) => {
+  const response = await apiClient.post('/auth/register', userData);
+  return response.data;
+};
+
+// 7. AUTH: Đăng nhập tài khoản
+export const loginUser = async (credentials) => {
+  const response = await apiClient.post('/auth/login', credentials);
+  return response.data;
+};
+
 export default apiClient;

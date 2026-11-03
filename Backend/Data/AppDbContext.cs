@@ -10,6 +10,7 @@ namespace BackendAPI.Data
         }
 
         public DbSet<ServiceItem> Services { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

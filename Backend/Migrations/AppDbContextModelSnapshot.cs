@@ -54,7 +54,7 @@ namespace BackendAPI.Migrations
                         {
                             Id = 1,
                             Category = "Chuyển tiền",
-                            CreatedAt = new DateTime(2026, 10, 27, 8, 50, 56, 856, DateTimeKind.Utc).AddTicks(9717),
+                            CreatedAt = new DateTime(2026, 11, 3, 6, 25, 26, 299, DateTimeKind.Utc).AddTicks(2792),
                             Description = "Miễn phí toàn bộ giao dịch chuyển khoản liên ngân hàng nhanh chóng và tiện lợi.",
                             Fee = 0m,
                             IsActive = true,
@@ -64,7 +64,7 @@ namespace BackendAPI.Migrations
                         {
                             Id = 2,
                             Category = "Bảo mật",
-                            CreatedAt = new DateTime(2026, 10, 27, 8, 50, 56, 856, DateTimeKind.Utc).AddTicks(9721),
+                            CreatedAt = new DateTime(2026, 11, 3, 6, 25, 26, 299, DateTimeKind.Utc).AddTicks(2798),
                             Description = "Xác thực bằng khuôn mặt và vân tay với công nghệ mã hóa tối tân chuẩn quốc tế.",
                             Fee = 0m,
                             IsActive = true,
@@ -74,12 +74,38 @@ namespace BackendAPI.Migrations
                         {
                             Id = 3,
                             Category = "Tiết kiệm",
-                            CreatedAt = new DateTime(2026, 10, 27, 8, 50, 56, 856, DateTimeKind.Utc).AddTicks(9723),
+                            CreatedAt = new DateTime(2026, 11, 3, 6, 25, 26, 299, DateTimeKind.Utc).AddTicks(2800),
                             Description = "Lãi suất ưu đãi vượt trội, linh hoạt rút tiền và tất toán ngay trên ứng dụng di động.",
                             Fee = 0m,
                             IsActive = true,
                             Title = "Gửi tiết kiệm Online"
                         });
+                });
+
+            modelBuilder.Entity("BackendAPI.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }
